@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario - Tech Kun</title>
+</head>
+<body>
+
+    <h1>Control de inventario</h1>
+
+    <a th:href="@{/productos/nuevo}">Registrar producto</a>
+
+    <h2>Lista de productos</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="producto : ${productos}">
+                <td th:text="${producto.id}"></td>
+                <td th:text="${producto.nombre}"></td>
+                <td th:text="${producto.descripcion}"></td>
+                <td th:text="${producto.precio}"></td>
+                <td th:text="${producto.cantidad}"></td>
+                <td>
+                    <a th:href="@{/productos/editar/{id}(id=${producto.id})}">Editar</a>
+                    <a th:href="@{/productos/eliminar/{id}(id=${producto.id})}"
+                       onclick="return confirm('¿Desea eliminar este producto?')">
+                        Eliminar
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>
